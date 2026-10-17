@@ -46,19 +46,17 @@ Copy the code below and paste it into your AI chat, then press Enter.
 ```bash
 pip install -e .
 
-**What you will see?**
+What you will see?
 
 The tool will start installing. Wait until it finishes.
 
----
+Step 2: Load the tool
 
-### Step 2: Load the tool
-
-**What this does?**
+What this does?
 
 This loads the evaluation tool.
 
-**Where to paste?**
+Where to paste?
 
 Copy the code below and paste it into the same chat.
 ```
@@ -67,19 +65,17 @@ from live_agent_evalimport EvalHarness
 
 ```
 
-**What you will see?**
+What you will see?
 
 Nothing special. It just loads the tool.
 
----
+Step 3: Create the evaluator
 
-### Step 3: Create the evaluator
-
-**What this does?**
+What this does?
 
 This creates the evaluation tool.
 
-**Where to paste?**
+Where to paste?
 
 Copy the code below and paste it into the same chat.
 ```
@@ -88,19 +84,17 @@ harness= EvalHarness()
 
 ```
 
-**What you will see?**
+What you will see?
 
 Nothing appears. It is ready.
 
----
+Step 4: Load sample issues
 
-### Step 4: Load sample issues
-
-**What this does?**
+What this does?
 
 This loads example problems to test the agent.
 
-**Where to paste?**
+Where to paste?
 
 Copy the code below and paste it into the same chat.
 ```
@@ -110,19 +104,17 @@ print(f"Loaded{len(issues)} sample issues")
 
 ```
 
-**What you will see?**
+What you will see?
 
 You will see how many sample issues were loaded.
 
----
+Step 5: Test one issue
 
-### Step 5: Test one issue
-
-**What this does?**
+What this does?
 
 This tests the agent on one problem.
 
-**Where to paste?**
+Where to paste?
 
 Copy the code below and paste it into the same chat.
 ```
@@ -134,13 +126,11 @@ print(result)
 
 ```
 
-**What you will see?**
+What you will see?
 
 You will see the score and result of the test.
 
----
-
-## Full Example (Copy everything together & paste in the chat)
+Full Example (Copy everything below together & paste in the chat)
 ```
 
 from live_agent_evalimport EvalHarness
@@ -157,11 +147,8 @@ print(result)
 
 ```
 
----
-
-## License
+License
 
 Apache-2.0
 
 Free for personal and commercial use.
-```
