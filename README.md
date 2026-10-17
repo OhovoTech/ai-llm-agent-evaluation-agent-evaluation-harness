@@ -1,84 +1,167 @@
-# Ohovo Evaloo – Live Agent Evaluation Harness
+# AI Agent Evaluation - Agent Evaluation Harness Ohovo Evaloo Go
 
-**Lightweight harness for evaluating AI agents on live or sample issues with consistency and cost-aware scoring.**
+**Simple Tool to Test AI Agents**
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![Local-first](https://img.shields.io/badge/local--first-yes-brightgreen.svg)](#)
+This tool helps you test how good an AI agent is.
+It checks if the agent solves problems correctly and how consistent it is.
 
-## What is Ohovo Evaloo?
+---
 
-Ohovo Evaloo (package name: `live-agent-eval`) helps you measure how consistent and effective an agent is on a set of tasks or GitHub-style issues. It focuses on:
+## What is this tool?
 
-- Success rate
-- Consistency across multiple runs
-- Simple scoring that can later incorporate cost
+This is a free Python tool that evaluates AI agents.
+It works with Claude, ChatGPT, Grok, Gemini, Cursor, and any tool that can run Python.
 
-The core runs completely locally with sample issues so you can test immediately without network access.
+## Who can use it?
 
-## Compatible AI Models & Frameworks
+Anyone who builds AI agents and wants to test them.
 
-You can evaluate agents powered by:
+## Compatible with
 
-- Claude, GPT-4o / o-series, Grok, Gemini
-- Local models
-- Any framework that can produce a structured answer for a given issue (LangGraph, CrewAI, custom loops, etc.)
+- Claude
+- ChatGPT
+- Grok
+- Gemini
+- Cursor
+- Google Colab
+- Any tool that can run Python code
 
-The harness itself does not call models – you plug in your agent’s output.
+---
 
-## Installation
+How to use this tool (Very Easy Steps)
+
+You do not need to create any file.
+Just copy and paste the code directly into the chat.
+
+---
+
+Step 1: Install the tool
+
+What this does?
+This installs the evaluation tool.
+
+Where to paste?
+Copy the code below and paste it into your AI chat, then press Enter.
 
 ```bash
 pip install -e .
-# later: pip install ohovo-evaloo
+
+**What you will see?**
+
+The tool will start installing. Wait until it finishes.
+
+---
+
+### Step 2: Load the tool
+
+**What this does?**
+
+This loads the evaluation tool.
+
+**Where to paste?**
+
+Copy the code below and paste it into the same chat.
 ```
 
-## Quick Start
+from live_agent_evalimport EvalHarness
 
-```python
-from live_agent_eval import EvalHarness
-
-harness = EvalHarness()
-
-# Load built-in sample issues (no network needed)
-issues = harness.load_sample_issues()
-
-# Simulate or plug in your agent’s answers
-for issue in issues:
-    # Replace this with a real call to your agent
-    agent_answer = "Fixed by adding bounds check" if "pagination" in issue["title"].lower() else "Still investigating"
-    result = harness.evaluate_one(issue, agent_answer)
-    print(f"Issue: {issue['title']}")
-    print(f"  score={result['score']:.2f}  success={result['success']}")
 ```
 
-## How to Use – User Guide
+**What you will see?**
 
-### 1. Load Issues
-```python
-issues = harness.load_sample_issues()          # local samples
-# later you can add: harness.load_github_issues(repo, labels=...)
+Nothing special. It just loads the tool.
+
+---
+
+### Step 3: Create the evaluator
+
+**What this does?**
+
+This creates the evaluation tool.
+
+**Where to paste?**
+
+Copy the code below and paste it into the same chat.
 ```
 
-### 2. Evaluate a Single Answer
-```python
-result = harness.evaluate_one(issue, agent_output)
-# returns score, success flag, consistency helpers
+harness= EvalHarness()
+
 ```
 
-### 3. Run Multiple Trials for Consistency
-Run the same issue several times and measure how stable the agent’s behavior is. Consistency is often more important than peak performance for production agents.
+**What you will see?**
 
-### 4. Extend with Real Agents
-Wrap your agent so it receives the issue description and returns a string (or structured) answer. Feed that answer into `evaluate_one`.
+Nothing appears. It is ready.
 
-## Why Ohovo Evaloo?
+---
 
-- Instant local testing with sample issues
-- Focus on consistency (a frequently missing metric)
-- Ready for future paid “live issue packs” and private enterprise suites
-- Complements promptfoo, DeepEval, and SWE-bench style tools
+### Step 4: Load sample issues
+
+**What this does?**
+
+This loads example problems to test the agent.
+
+**Where to paste?**
+
+Copy the code below and paste it into the same chat.
+```
+
+issues= harness.load_sample_issues()
+print(f"Loaded{len(issues)} sample issues")
+
+```
+
+**What you will see?**
+
+You will see how many sample issues were loaded.
+
+---
+
+### Step 5: Test one issue
+
+**What this does?**
+
+This tests the agent on one problem.
+
+**Where to paste?**
+
+Copy the code below and paste it into the same chat.
+```
+
+issue= issues[0]
+agent_answer= "Fixed by adding a bounds check"
+result= harness.evaluate_one(issue, agent_answer)
+print(result)
+
+```
+
+**What you will see?**
+
+You will see the score and result of the test.
+
+---
+
+## Full Example (Copy everything together & paste in the chat)
+```
+
+from live_agent_evalimport EvalHarness
+
+harness= EvalHarness()
+
+issues= harness.load_sample_issues()
+print(f"Loaded{len(issues)} sample issues")
+
+issue= issues[0]
+agent_answer= "Fixed by adding a bounds check"
+result= harness.evaluate_one(issue, agent_answer)
+print(result)
+
+```
+
+---
 
 ## License
 
 Apache-2.0
+
+Free for personal and commercial use.
+```
